@@ -10,7 +10,7 @@ function Login() {
      e.preventDefault();
 
     try{                       /* This sends data to backend */
-      const res = await axios.post("http://localhost:5000/auth/login", {
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/auth/login`, {
         email,
         password,
       });

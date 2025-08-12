@@ -19,7 +19,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchGoals = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/goals", {
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/goals`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
@@ -39,7 +39,7 @@ function Dashboard() {
     try {
       /* This sends data to backend */
       const res = await axios.post(
-        "http://localhost:5000/goals",
+        `${import.meta.env.VITE_API_BASE_URL}/goals`,
         {
           /*JWT token in the headers to tell the backend: “I’m logged in!” */
           title,
@@ -67,7 +67,7 @@ function Dashboard() {
     console.log("Deleting Goal Id :", id); //Check this
     try {
       const deleteGoal = await axios.delete(
-        `http://localhost:5000/goals/${id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/goals/${id}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -92,7 +92,7 @@ function Dashboard() {
     e.preventDefault();
     try {
       const res = await axios.put(
-        `http://localhost:5000/goals/${editGoalId}`,
+        `${import.meta.env.VITE_API_BASE_URL}/goals/${editGoalId}`,
         {
           title: editTitle,
           description: editDescription,
@@ -123,7 +123,7 @@ function Dashboard() {
   const handleMarkAsCompleted = async (id) => {
     try {
       const res = await axios.put(
-        `http://localhost:5000/goals/${id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/goals/${id}`,
         { isCompleted: true },
         {
           headers: {
@@ -150,7 +150,7 @@ function Dashboard() {
         const token = localStorage.getItem("token");
 
         const response = await fetch(
-          "http://localhost:5000/goals/weekly-data",
+          `${import.meta.env.VITE_API_BASE_URL}/goals/weekly-data`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
